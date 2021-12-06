@@ -10,7 +10,7 @@ setup(
   url = 'https://github.com/longapalooza/TEEPy',
   download_url = 'https://github.com/longapalooza/TEEPy/archive/refs/tags/v_03.tar.gz',
   keywords = ['Tech', 'Exam', 'Engineering'],
-  install_requires = [            # I get to this in a second
+  install_requires = [
           'beautifulsoup',
           'cefpython3',
           'pint',
