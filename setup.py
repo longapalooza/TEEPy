@@ -8,10 +8,10 @@ setup(
   author = 'William Long',
   author_email = 'admin@longapalooza.com',
   url = 'https://github.com/longapalooza/TEEPy',
-  download_url = 'https://github.com/longapalooza/TEEPy/archive/refs/tags/v_03.tar.gz',
+  download_url = 'https://github.com/longapalooza/TEEPy/archive/refs/tags/v0.3_beta.tar.gz',
   keywords = ['Tech', 'Exam', 'Engineering'],
   install_requires = [
-          'beautifulsoup',
+          'beautifulsoup4',
           'cefpython3',
           'pint',
           'pyppeteer',
