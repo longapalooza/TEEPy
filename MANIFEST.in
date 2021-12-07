@@ -1,2 +1,2 @@
-include TEEPy/teepy.css
-include TEEPy/teepy.html
+include teepy/teepy.css
+include teepy/teepy.html
