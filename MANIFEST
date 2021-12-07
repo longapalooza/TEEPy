@@ -2,4 +2,6 @@
 setup.cfg
 setup.py
 TEEPy\__init__.py
+TEEPy\teepy.css
+TEEPy\teepy.html
 TEEPy\teepy.py
