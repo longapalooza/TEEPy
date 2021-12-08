@@ -15,10 +15,10 @@ from bs4 import BeautifulSoup
 from cefpython3 import cefpython as cef
 from pyppeteer import launch
 
-def __generate_choices_html(prob, choices):
 ureg = pint.UnitRegistry()
 define_unit = ureg.Quantity
 
+def generate_choices_html(prob, choices):
     '''Generate HTML of choices'''
     
     choice_format = None
