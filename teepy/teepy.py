@@ -159,8 +159,6 @@ min_val and max_val not yet implemented.
     correct_ind = random.randint(0, N - 1)
     choices = []
     if hasattr(ans[0], 'magnitude'):
-        ureg = pint.UnitRegistry()
-        Q_ = ureg.Quantity
         for i in range(0, N):
             _ = ans[0].magnitude - (N - i)*step
             choices.append(define_unit(_, ans[0].units))
