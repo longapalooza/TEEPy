@@ -105,8 +105,8 @@ def __generate_assessment_soup(ind, PROBLEM, CHOICES, template, css,
 
     prob = PROBLEM(ind)
     choices = CHOICES(ind)
-    prob_state_html = __generate_problem_statement_html(prob, PROBLEM)
-    choices_html = __generate_choices_html(prob, choices)
+    prob_state_html = generate_problem_statement_html(prob, PROBLEM)
+    choices_html = generate_choices_html(prob, choices)
         
     div = __generate_problem_div(soup, prob_state_html, choices_html)
     main.append(div)
@@ -347,8 +347,8 @@ class begin:
                     answer_letters.append(chr(ord('@') + ic + 1))
             answer_letters.sort()
         
-        problem_statement_html = self.__generate_problem_statement_html(prob, m.PROBLEM)
-        choices_html = self.__generate_choices_html(prob, choices)
+        problem_statement_html = generate_problem_statement_html(prob, m.PROBLEM)
+        choices_html = generate_choices_html(prob, choices)
         
         html = problem_statement_html + '<br>' + choices_html
         
