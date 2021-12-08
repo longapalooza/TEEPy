@@ -147,11 +147,10 @@ def display(ind, PROBLEM, CHOICES, template = 'teepy.html',
     temp.close()
 
 
-def generate_choices(N, ans, step, min_val = None, max_val = None):
+def generate_choices(N, ans, step):
     '''Generate N numeric choices given answers ans, and step size
 step.
 
-min_val and max_val not yet implemented.
 '''
     
     if type(ans) != list:
