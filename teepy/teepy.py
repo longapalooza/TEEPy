@@ -82,7 +82,8 @@ def __generate_assessment_soup(ind, PROBLEM, CHOICES, template, css,
                                highlight_answers):
     '''Generate BeautifulSoup object for assessment'''
     
-    soup = BeautifulSoup(open(os.path.join(os.path.dirname(__file__), template)).read(), 'html.parser')
+    _ = open(os.path.join(os.path.dirname(__file__), template)).read()
+    soup = BeautifulSoup(_, 'html.parser')
     
     link = soup.new_tag('link')
     link['rel'] = 'stylesheet'
@@ -119,8 +120,8 @@ def display(ind, PROBLEM, CHOICES, template = 'teepy.html',
             css = None, highlight_answers = True, print_HTML = False):
     '''Display rendered PROBLEM function with CHOICES'''
     
-    soup = __generate_assessment_soup(ind, PROBLEM, CHOICES, template, css,
-                                      highlight_answers)
+    soup = __generate_assessment_soup(ind, PROBLEM, CHOICES, template,
+                                      css, highlight_answers)
     
     html = soup.prettify()
     
@@ -232,7 +233,8 @@ class begin:
             structure = {'type': 'HTML', 'HTML': HTML}
             self.ac_stack.append(structure)
 
-        def problem(self, filename, pts_correct, pts_incorrect = -0, min_height = None):
+        def problem(self, filename, pts_correct, pts_incorrect = -0,
+                    min_height = None, display_worth = True):
             structure = {'type': 'problem',
                          'filename': filename,
                          'pts_correct': pts_correct,
@@ -257,7 +259,8 @@ class begin:
     def form_number(self):
         return '{unique_form_number_goes_here}'
     
-    def problem(self, filename, pts_correct, pts_incorrect = 0, min_height = None):
+    def problem(self, filename, pts_correct, pts_incorrect = 0,
+                min_height = None, display_worth = True):
         structure = {'type': 'problem',
                      'filename': filename,
                      'pts_correct': pts_correct,
@@ -328,7 +331,8 @@ class begin:
     def __generate_problem_data(self, filename, uuid, ind):
         
         filename, fileext = os.path.splitext(filename)
-        m = importlib.machinery.SourceFileLoader('mymodule', filename + '.py').load_module()
+        _ = filename + '.py'
+        m = importlib.machinery.SourceFileLoader('m', _).load_module()
 
         qid = self.uuids.index(uuid)
         
@@ -369,30 +373,37 @@ class begin:
                 await page.waitFor(100)
             except:
                 pass
-            await page.pdf(path = filename, margin = {'top': '0.5in',
-                                                      'right': '0.5in',
-                                                      'bottom': '0.5in',
-                                                      'left': '0.5in'})
+            await page.pdf(path = filename,
+                           margin = {'top': '0.5in',
+                                     'right': '0.5in',
+                                     'bottom': '0.5in',
+                                     'left': '0.5in'},
+                           printBackground = True)
             await browser.close()
 
         asyncio.get_event_loop().run_until_complete(main())
 
-    def __process_section(self, stack, html = '', ind = None, pid = None):
+    def __process_section(self, stack, html = '', ind = None,
+                          pid = None):
         section_soup = BeautifulSoup('', 'html.parser')
         
         for s in stack:
             if s['type'] == 'HTML':
-                section_soup.append(BeautifulSoup(s['HTML'], 'html.parser'))
+                _ = BeautifulSoup(s['HTML'], 'html.parser')
+                section_soup.append(_)
             elif s['type'] == 'section':
                 _ = s['stack']
                 if s['shuffle']:
                     _ = random.sample(s['stack'], len(s['stack']))
                 html, pid = self.__process_section(_, pid = pid)
-                section_soup.append(BeautifulSoup(html, 'html.parser'))
+                _ =BeautifulSoup(html, 'html.parser')
+                section_soup.append(_)
             elif s['type'] == 'problem':
                 if ind is None:
                     ind = random.sample(range(0, self.n_inds), 1)[0]
-                prob_data = self.__generate_problem_data(s['filename'], s['uuid'], ind)
+                prob_data = self.__generate_problem_data(s['filename'],
+                                                         s['uuid'],
+                                                         ind)
                 
                 self.key.append(prob_data['answer_letters'])
                 self.pts_correct.append(s['pts_correct'])
@@ -402,7 +413,8 @@ class begin:
                 div = section_soup.new_tag('div')
                 div['class'] = 'problem'
                 if s['min_height']:
-                    div['style'] ='min-height: ' + str(s['min_height']) + 'in;>'
+                    div['style'] ='min-height: ' + str(s['min_height'])
+                    div['style'] += 'in;>'
                 span = section_soup.new_tag('span')
                 span['class'] = 'problem_number'
                 span.string = str(pid)
@@ -413,13 +425,15 @@ class begin:
                 span.string = str(s['pts_correct'])
                 div.append(span)
                 
-                div.append(BeautifulSoup(prob_data['html'], 'html.parser'))
+                _ = BeautifulSoup(prob_data['html'], 'html.parser')
+                div.append(_)
                 section_soup.append(div)
                 pid += 1
         html = str(section_soup)
         return [html, pid]
 
-    def __process_stack(self, stack, highlight_answers = False, ind = None, pid = None):
+    def __process_stack(self, stack, highlight_answers = False,
+                        ind = None, pid = None):
         
         soup = BeautifulSoup(open(self.template).read(), 'html.parser')
         
@@ -462,7 +476,9 @@ class begin:
             elif s['type'] == 'problem':
                 if ind is None:
                     ind = random.sample(range(0, self.n_inds), 1)[0]
-                prob_data = self.__generate_problem_data(s['filename'], s['uuid'], ind)
+                prob_data = self.__generate_problem_data(s['filename'],
+                                                         s['uuid'],
+                                                         ind)
                 
                 self.key.append(prob_data['answer_letters'])
                 self.pts_correct.append(s['pts_correct'])
@@ -483,7 +499,8 @@ class begin:
                 span.string = str(s['pts_correct'])
                 div.append(span)
                 
-                div.append(BeautifulSoup(prob_data['html'], 'html.parser'))
+                _ = BeautifulSoup(prob_data['html'], 'html.parser')
+                div.append(_)
                 main.append(div)
                 pid += 1
         
@@ -515,8 +532,12 @@ class begin:
                 
                 print('Generating', ref, '... ', end = '')
                 
-                html = self.__process_stack(self.flat_stack, highlight_answers = True, ind = ind)
-                html = html.replace('{unique_form_number_goes_here}', ref)
+                html = self.__process_stack(self.flat_stack,
+                                            highlight_answers = True,
+                                            ind = ind)
+                html = html.replace('{unique_form_number_goes_here}',
+                                    ref)
+                
                 
                 self.key = []
                 self.pts_correct = []
@@ -527,10 +548,12 @@ class begin:
                     os.makedirs(output_dir)
                 
                 if output_HTML:
-                    with open(os.path.join(output_dir, ref + '.html'), 'w') as fh:
+                    _ = os.path.join(output_dir, ref + '.html')
+                    with open(_, 'w') as fh:
                         fh.write(html)
                 if output_PDF:
-                    self.__html_to_pdf(html, os.path.join(output_dir, ref + '.pdf'))
+                    _ = os.path.join(output_dir, ref + '.pdf')
+                    self.__html_to_pdf(html, _)
                 
                 print('Done!')
         
@@ -538,15 +561,20 @@ class begin:
         for n_form in range(1, self.n_forms + 1):
             form_str = str(forms[n_form - 1]).zfill(4)
             
-            print(str(n_form) + '. Generating Form', form_str, '... ', end = '')
+            print(str(n_form) + '. Generating Form', form_str, '... ',
+                  end = '')
             
             html = self.__process_stack(self.stack)
-            html = html.replace('{unique_form_number_goes_here}', form_str)
+            html = html.replace('{unique_form_number_goes_here}',
+                                form_str)
             
             self.keys.append({'form': form_str, 'values': self.key})
-            self.pts_corrects.append({'form': form_str, 'values': self.pts_correct})
-            self.pts_incorrects.append({'form': form_str, 'values': self.pts_incorrect})
-            self.refids.append({'form': form_str, 'values': self.refid})
+            self.pts_corrects.append({'form': form_str,
+                                      'values': self.pts_correct})
+            self.pts_incorrects.append({'form': form_str,
+                                        'values': self.pts_incorrect})
+            self.refids.append({'form': form_str,
+                                'values': self.refid})
             
             self.key = []
             self.pts_correct = []
@@ -557,16 +585,20 @@ class begin:
                 os.makedirs(output_dir)
                 
             if output_HTML:
-                with open(os.path.join(output_dir, 'form_' + form_str + '.html'), 'w') as fh:
+                _ = 'form_' + form_str + '.html'
+                with open(os.path.join(output_dir, _), 'w') as fh:
                     fh.write(html)
             if output_PDF:
-                self.__html_to_pdf(html, os.path.join(output_dir, 'form_' + form_str + '.pdf'))
+                _ = 'form_' + form_str + '.pdf'
+                self.__html_to_pdf(html, os.path.join(output_dir, _))
             
             print('Done!')
         
         keys = sorted(self.keys, key = lambda x: x['form'])
-        pts_corrects = sorted(self.pts_corrects, key = lambda x: x['form'])
-        pts_incorrects = sorted(self.pts_incorrects, key = lambda x: x['form'])
+        pts_corrects = sorted(self.pts_corrects,
+                              key = lambda x: x['form'])
+        pts_incorrects = sorted(self.pts_incorrects,
+                                key = lambda x: x['form'])
         refids = sorted(self.refids, key = lambda x: x['form'])
         
         self.keys = []
