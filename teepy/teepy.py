@@ -504,14 +504,6 @@ class begin:
                 main.append(div)
                 pid += 1
         
-        for image in soup.findAll('img'):
-            filepath, ext = os.path.splitext(os.path.abspath(image['src']))
-            img64 = ''
-            with open(filepath + ext, 'rb') as img:
-                img64 = base64.b64encode(img.read()).decode('utf-8')
-            
-            image['src'] = 'data:image/' + ext.replace('.', '') + ';base64,' + img64
-        
         html = str(soup)
         
         return html
