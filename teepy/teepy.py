@@ -488,7 +488,8 @@ class begin:
                 div = soup.new_tag('div')
                 div['class'] = 'problem'
                 if s['min_height']:
-                    div['style'] ='min-height: ' + str(s['min_height']) + 'in;>'
+                    div['style'] ='min-height: '
+                    div['style'] += str(s['min_height']) + 'in;>'
                 span = soup.new_tag('span')
                 span['class'] = 'problem_number'
                 span.string = str(pid)
