@@ -240,7 +240,8 @@ class begin:
                          'pts_correct': pts_correct,
                          'pts_incorrect': pts_incorrect,
                          'min_height': min_height,
-                         'uuid': str(uuid.uuid4())}
+                         'uuid': str(uuid.uuid4()),
+                         'display_worth': display_worth}
             self.stack.append(structure)
 
         def new_page(self):
@@ -266,7 +267,8 @@ class begin:
                      'pts_correct': pts_correct,
                      'pts_incorrect': pts_incorrect,
                      'min_height': min_height,
-                     'uuid': str(uuid.uuid4())}
+                     'uuid': str(uuid.uuid4()),
+                     'display_worth': display_worth}
         self.stack.append(structure)
 
     def new_page(self):
