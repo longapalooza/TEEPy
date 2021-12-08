@@ -207,7 +207,7 @@ class begin:
     provides all the available methods to interactive with TEEPy when
     acting as the assessment creator.'''
     
-    def __init__(self, n_forms = 1, n_inds = 1,
+    def __init__(self, n_forms = 0, n_inds = 1,
                  template = 'teepy.html', css = None):
         self.css = css
         self.cwd = os.path.dirname(__file__)
