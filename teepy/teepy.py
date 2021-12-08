@@ -136,12 +136,24 @@ def display(ind, PROBLEM, CHOICES, template = 'teepy.html',
     temp.seek(0)
     temp_filename = temp.name.replace(os.sep, '/')
     
+    width = int((8.5 - 2*0.5)*96) # letter page size width (8.5in) minus 0.5in margins times 96 dpi
+    height = int(0.75*(11 - 2*0.5)*96) # letter page size height (11in) minus 0.5in margins times 96 dpi, 3/4 of a page length
+    
     settings = {'cache_path': tempfile.gettempdir(),
                 'remote_debugging_port': -1} # disables "DevTools listening ..." message
     sys.excepthook = cef.ExceptHook
     cef.Initialize(settings = settings)
-    cef.CreateBrowserSync(url = 'file:///' + temp_filename,
-                          window_title = 'TEEPY - Tech Engineering Exam in Python')
+    window_info = cef.WindowInfo()
+    window_info.SetAsChild(0, [0, 0, width, height])
+    b = cef.CreateBrowserSync(url = 'file:///' + temp_filename,
+                              window_title = 'TEEPY - Tech Engineering Exam in Python',
+                              window_info = window_info)
+    
+    if platform.system() == "Windows":
+        window_handle = b.GetOuterWindowHandle()
+        ctypes.windll.user32.SetWindowPos(window_handle, 0, 0, 0,
+                                          width, height, 0x0002)
+    
     cef.MessageLoop()
     cef.Shutdown()
     temp.close()
