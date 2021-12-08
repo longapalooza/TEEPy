@@ -42,7 +42,7 @@ def generate_choices_html(prob, choices):
                 html += '<li>'
             html += '<span>'
             if choice_format:
-                if hasattr(ans[0], 'magnitude'):
+                if hasattr(choice, 'magnitude'):
                     _ = choice_format.format(choice.magnitude)
                     _ += '{:~L}'.format(choice.units)
                     html += '$ ' + _ + ' $'
