@@ -191,7 +191,7 @@ th {
   *,
   *:before,
   *:after {
-    background: transparent !important;
+    /*background: transparent !important; - longapalooza edit*/
     box-shadow: none !important;
     text-shadow: none !important;
   }
