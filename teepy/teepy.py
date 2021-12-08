@@ -352,6 +352,21 @@ class begin:
         
         html = problem_statement_html + '<br>' + choices_html
         
+        img_s = BeautifulSoup(html, 'html.parser')
+        for image in img_s.findAll('img'):
+            _ = os.path.abspath(filename + '.py')
+            filedir = os.path.dirname(_)
+            _ = os.path.join(filedir, image['src'])
+            imgpath = os.path.abspath(_)
+            filepath, ext = os.path.splitext(imgpath)
+            img64 = ''
+            with open(filepath + ext, 'rb') as img:
+                img64 = base64.b64encode(img.read()).decode('utf-8')
+            
+            image['src'] = 'data:image/' + ext.replace('.', '')
+            image['src'] += ';base64,' + img64
+        html = str(img_s)
+        
         return {'html': html,
                 'answer_letters': '|'.join(answer_letters),
                 'refid': '|'.join([str(ind + 1), str(qid + 1)])}
