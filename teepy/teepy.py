@@ -277,57 +277,7 @@ class begin:
         self.stack.append({'type': 'section',
                            'stack': getattr(section, 'stack'),
                            'shuffle': getattr(section, 'shuffle')})
-    
-    
-    
-    
-    
-    def __generate_problem_statement_html(self, prob, PROBLEM):
-        '''Generate HTML of problem statement'''
         
-        html = PROBLEM.__doc__
-        givens = get_givens(prob)
-        if givens:
-            html = html.format(**givens)
-        return html
-    
-    def __generate_choices_html(self, prob, choices):
-        '''Generate HTML of choices'''
-        
-        choice_format = None
-        if choices and 'choices' in choices:
-            if 'choice_format' in choices:
-                choice_format = choices['choice_format']
-            choices = choices['choices']
-        else:
-            choices = None
-        
-        html = ''    
-        if choices:
-            ans = get_answers(prob)
-            if type(ans) != list:
-                ans = [ans]
-            html = '<ol type="A">\n'
-            for choice in choices:
-                if choice in ans:
-                    html += '<li class="answer">'
-                else:
-                    html += '<li>'
-                html += '<span>'
-                if choice_format:
-                    if hasattr(ans[0], 'magnitude'):
-                        _ = choice_format.format(choice.magnitude)
-                        _ += '{:~L}'.format(choice.units)
-                        html += '$ ' + _ + ' $'
-                    else:
-                        html += choice_format.format(choice)
-                else:
-                    html += choice
-                html += '<span></li>\n'
-            html += '</ol>'
-        return html
-        
-    
     def __generate_problem_data(self, filename, uuid, ind):
         
         filename, fileext = os.path.splitext(filename)
