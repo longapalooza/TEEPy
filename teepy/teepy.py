@@ -450,13 +450,8 @@ class begin:
         
         if highlight_answers:
             style = soup.new_tag('style')
-            style.string = 'li.answer > span {background-color: #D9EAD3;}\n'
-#             style.string += '@media print {\n'
-#             style.string += '\tbody {\n'
-#             style.string += '\t\tbackground-color: #D9EAD3 !important;\n'
-#             style.string += '\t\t-webkit-print-color-adjust: exact;\n'
-#             style.string += '\t}\n'
-#             style.string += '}'
+            style.string = 'li.answer > span {background-color: '
+            style.string += '#D9EAD3; !important}\n'
             soup.html.head.append(style)
         
         main = soup.find(id = 'main')
