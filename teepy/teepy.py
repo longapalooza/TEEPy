@@ -538,6 +538,12 @@ class begin:
                 html = html.replace('{unique_form_number_goes_here}',
                                     ref)
                 
+                self.keys.append({'form': ref, 'values': self.key})
+                self.pts_corrects.append({'form': ref,
+                                          'values': self.pts_correct})
+                self.pts_incorrects.append({'form': ref,
+                                            'values': self.pts_incorrect})
+                self.refids.append({'form': ref, 'values': self.refid})
                 
                 self.key = []
                 self.pts_correct = []
