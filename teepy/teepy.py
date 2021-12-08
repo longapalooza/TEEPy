@@ -620,22 +620,29 @@ class begin:
         ws_pts_incorrect.write(0, 0, 'form')
         ws_refid.write(0, 0, 'form')
         
-        for ic, data in enumerate(keys[0]['values']):
-            ws_key.write(0, ic + 1, ic + 1)
-            ws_pts_correct.write(0, ic + 1, ic + 1)
-            ws_pts_incorrect.write(0, ic + 1, ic + 1)
-            ws_refid.write(0, ic + 1, ic + 1)
-        
-        for ir, data in enumerate(keys):
-            ws_key.write(ir + 1, 0, keys[ir]['form'])
-            ws_pts_correct.write(ir + 1, 0, pts_corrects[ir]['form'])
-            ws_pts_incorrect.write(ir + 1, 0, pts_incorrects[ir]['form'])
-            ws_refid.write(ir + 1, 0, refids[ir]['form'])
-            for ic, val in enumerate(keys[ir]['values']):
-                ws_key.write(ir + 1, ic + 1, keys[ir]['values'][ic])
-                ws_pts_correct.write(ir + 1, ic + 1, pts_corrects[ir]['values'][ic])
-                ws_pts_incorrect.write(ir + 1, ic + 1, pts_incorrects[ir]['values'][ic])
-                ws_refid.write(ir + 1, ic + 1, refids[ir]['values'][ic])
+        if len(keys) != 0:
+            for ic, data in enumerate(keys[0]['values']):
+                ws_key.write(0, ic + 1, ic + 1)
+                ws_pts_correct.write(0, ic + 1, ic + 1)
+                ws_pts_incorrect.write(0, ic + 1, ic + 1)
+                ws_refid.write(0, ic + 1, ic + 1)
+            
+            for ir, data in enumerate(keys):
+                ws_key.write(ir + 1, 0, keys[ir]['form'])
+                ws_pts_correct.write(ir + 1, 0,
+                                     pts_corrects[ir]['form'])
+                ws_pts_incorrect.write(ir + 1, 0,
+                                       pts_incorrects[ir]['form'])
+                ws_refid.write(ir + 1, 0, refids[ir]['form'])
+                for ic, val in enumerate(keys[ir]['values']):
+                    ws_key.write(ir + 1, ic + 1,
+                                 keys[ir]['values'][ic])
+                    ws_pts_correct.write(ir + 1, ic + 1,
+                                         pts_corrects[ir]['values'][ic])
+                    ws_pts_incorrect.write(ir + 1, ic + 1,
+                                           pts_incorrects[ir]['values'][ic])
+                    ws_refid.write(ir + 1, ic + 1,
+                                   refids[ir]['values'][ic])
         wb.close()
         
         return None
