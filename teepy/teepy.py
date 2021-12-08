@@ -72,6 +72,9 @@ def generate_problem_statement_html(prob, PROBLEM):
     html = PROBLEM.__doc__
     givens = get_givens(prob)
     if givens:
+        for key in givens:
+            if hasattr(givens[key], 'magnitude'):
+                givens[key] = '{:~L}'.format(givens[key])
         html = html.format(**givens)
     return html
 
