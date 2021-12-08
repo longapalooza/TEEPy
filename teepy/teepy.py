@@ -420,10 +420,11 @@ class begin:
                 span.string = str(pid)
                 div.append(span)
                 
-                span = section_soup.new_tag('span')
-                span['class'] = 'problem_worth'
-                span.string = str(s['pts_correct'])
-                div.append(span)
+                if s['display_worth']:
+                    span = section_soup.new_tag('span')
+                    span['class'] = 'problem_worth'
+                    span.string = str(s['pts_correct'])
+                    div.append(span)
                 
                 _ = BeautifulSoup(prob_data['html'], 'html.parser')
                 div.append(_)
