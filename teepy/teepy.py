@@ -66,7 +66,7 @@ def __generate_problem_div(soup, prob_state_html, choices_html):
                              'html.parser'))
     return div
 
-def __generate_problem_statement_html(prob, PROBLEM):
+def generate_problem_statement_html(prob, PROBLEM):
     '''Generate HTML of problem statement'''
     
     html = PROBLEM.__doc__
