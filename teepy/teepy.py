@@ -194,12 +194,6 @@ def get_givens(prob):
         givens = prob['given']
     return givens
 
-
-
-
-
-
-
 class begin:
     '''The begin class for TEEPy.
 
