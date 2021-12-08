@@ -47,7 +47,10 @@ def generate_choices_html(prob, choices):
                     _ += '{:~L}'.format(choice.units)
                     html += '$ ' + _ + ' $'
                 else:
-                    html += choice_format.format(choice)
+                    try:
+                        html += choice_format.format(choice)
+                    except:
+                        html += choice
             else:
                 html += choice
             html += '<span></li>\n'
