@@ -162,10 +162,12 @@ min_val and max_val not yet implemented.
         ureg = pint.UnitRegistry()
         Q_ = ureg.Quantity
         for i in range(0, N):
-            choices.append(Q_(ans[0].magnitude - (N - i)*step, ans[0].units))
+            _ = ans[0].magnitude - (N - i)*step
+            choices.append(define_unit(_, ans[0].units))
         choices.append(ans[0])
         for i in range(1, N + 1):
-            choices.append(Q_(ans[0].magnitude + i*step, ans[0].units))
+            _ = ans[0].magnitude + i*step
+            choices.append(define_unit(_, ans[0].units))
     else:
         for i in range(0, N):
             choices.append(ans[0] - (N - i)*step)
