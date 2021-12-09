@@ -17,6 +17,13 @@ from pyppeteer import launch
 
 ureg = pint.UnitRegistry()
 define_unit = ureg.Quantity
+define_custom_unit = ureg.define
+
+def prefix_list(lst, prefix):
+    return [prefix + e for e in lst]
+
+def suffix_list(lst, suffix):
+    return [e + suffix for e in lst]
 
 def generate_choices_html(prob, choices):
     '''Generate HTML of choices'''
