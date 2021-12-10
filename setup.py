@@ -2,7 +2,7 @@ from distutils.core import setup
 setup(
   name = 'teepy',
   packages = ['teepy'],
-  version = '0.3.1',
+  version = '0.3.2',
   license = 'MIT',
   description = 'Tech Engineering Exam in Python',
   author = 'William Long',
