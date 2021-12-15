@@ -95,7 +95,7 @@ is shown below.
 .. code-block:: python
 
     # A question is a given variable
-    def PROBLEM(find):
+    def PROBLEM(ind):
         '''A {object} is an example of what?'''
         
         obj = ['dog', 'carrot', 'diamond'] 
@@ -115,7 +115,7 @@ An example of utilizing units is shown below.
 
     import teepy
     
-    def PROBLEM(find):
+    def PROBLEM(ind):
         '''If points A, B, and C lie along a straight line in that order,
     and the distance between point A and B is $ {L1} $, and the distance
     between point B and C is $ {L2} $, what is the distance between point
