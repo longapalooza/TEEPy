@@ -1,4 +1,4 @@
-# v0.3.2
+# v0.3.4
 import asyncio
 import base64
 import ctypes
@@ -603,12 +603,20 @@ class begin:
                 ws_refid.write(0, ic + 1, ic + 1)
             
             for ir, data in enumerate(keys):
-                ws_key.write(ir + 1, 0, keys[ir]['form'])
-                ws_pts_correct.write(ir + 1, 0,
-                                     pts_corrects[ir]['form'])
-                ws_pts_incorrect.write(ir + 1, 0,
-                                       pts_incorrects[ir]['form'])
-                ws_refid.write(ir + 1, 0, refids[ir]['form'])
+                try:
+                    ws_key.write(ir + 1, 0, int(keys[ir]['form']))
+                    ws_pts_correct.write(ir + 1, 0,
+                                         int(pts_corrects[ir]['form']))
+                    ws_pts_incorrect.write(ir + 1, 0,
+                                           int(pts_incorrects[ir]['form']))
+                    ws_refid.write(ir + 1, 0, int(refids[ir]['form']))
+                except:
+                    ws_key.write(ir + 1, 0, keys[ir]['form'])
+                    ws_pts_correct.write(ir + 1, 0,
+                                         pts_corrects[ir]['form'])
+                    ws_pts_incorrect.write(ir + 1, 0,
+                                           pts_incorrects[ir]['form'])
+                    ws_refid.write(ir + 1, 0, refids[ir]['form'])
                 for ic, val in enumerate(keys[ir]['values']):
                     ws_key.write(ir + 1, ic + 1,
                                  keys[ir]['values'][ic])
