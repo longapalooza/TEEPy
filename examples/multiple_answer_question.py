@@ -4,7 +4,7 @@ import teepy
 ind = 0
 
 def PROBLEM(ind):
-    '''How Many licks does it take to get to the center of a Tootsie
+    '''How many licks does it take to get to the center of a Tootsie
 Pop?'''
 
     answer = ['3', 'The world may never know.']
