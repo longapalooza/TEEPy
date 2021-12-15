@@ -75,11 +75,11 @@ below.
         
         return {'answer': answer}
 
-An example of a multiple-answer question is shown below.
+An example of a multiple answer question is shown below.
 
 .. code-block:: python
 
-    # A multiple-answer question
+    # A multiple answer question
     def PROBLEM(ind):
         '''How many licks does it take to get to the center of a Tootsie Pop?'''
         
@@ -94,7 +94,7 @@ is shown below.
 
 .. code-block:: python
 
-    # A question is a given variable
+    # A question with a given variable
     def PROBLEM(ind):
         '''A {object} is an example of what?'''
         
@@ -121,8 +121,8 @@ An example of utilizing units is shown below.
     between point B and C is $ {L2} $, what is the distance between point
     A and C?'''
         
-        L1s = [1, 2, 3, 4]
-        L2s = [5, 6, 7, 8]
+        L1s = [1, 2, 3]
+        L2s = [4, 5, 6]
         
         L1 = teepy.define_unit(L1s[ind], 'ft')
         L2 = teepy.define_unit(L2s[ind], 'cm')
