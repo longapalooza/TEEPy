@@ -52,13 +52,9 @@ shown below.
 .. code-block:: python
 
     # An open-ended question
-    import teepy
-
-    ind = 0
-
     def PROBLEM(ind):
         '''What is the meaning of life?'''
-
+        
         return None
 
 Even if there are no different versions of the question, the :code:`PROBLEM()`
@@ -72,15 +68,11 @@ below.
 .. code-block:: python
 
     # A single answer question
-    import teepy
-
-    ind = 0
-
     def PROBLEM(ind):
         '''What color is the sky?'''
-
+        
         answer = 'Blue'
-
+        
         return {'answer': answer}
 
 An example of a multiple-answer question is shown below.
@@ -88,10 +80,6 @@ An example of a multiple-answer question is shown below.
 .. code-block:: python
 
     # A multiple-answer question
-    import teepy
-    
-    ind = 0
-    
     def PROBLEM(ind):
         '''How many licks does it take to get to the center of a Tootsie Pop?'''
         
@@ -107,19 +95,15 @@ is shown below.
 .. code-block:: python
 
     # A question is a given variable
-    import teepy
-
-    ind = 0
-
     def PROBLEM(find):
         '''A {object} is an example of what?'''
-    
+        
         obj = ['dog', 'carrot', 'diamond'] 
-
+        
         answers = ['Animal', 'Vegatable', 'Mineral']
-    
+        
         given = {'object': obj[ind]}
-
+        
         return {'answer': answers[ind], 'given': given}
 
 It should be noted in the example above that three different versions of the
@@ -130,27 +114,25 @@ An example of utilizing units is shown below.
 .. code-block:: python
 
     import teepy
-
-    ind = 0
-
+    
     def PROBLEM(find):
         '''If points A, B, and C lie along a straight line in that order,
     and the distance between point A and B is $ {L1} $, and the distance
     between point B and C is $ {L2} $, what is the distance between point
     A and C?'''
-
+        
         L1s = [1, 2, 3, 4]
         L2s = [5, 6, 7, 8]
-    
+        
         L1 = teepy.define_unit(L1s[ind], 'ft')
         L2 = teepy.define_unit(L2s[ind], 'cm')
-    
+        
         L = L1 + L2
-
+        
         answer = L.to('m')
         given = {'L1': L1,
                  'L2': L2}
-
+        
         return {'answer': answer, 'given': given}
 
 There are a few things to note about the example above. If a given variable has
@@ -173,7 +155,7 @@ function that returns a :code:`None` value.
 .. code-block:: python
 
     def CHOICES(ind):
-    
+        
         return None
 
 If multiple-choice answers are provided, the :code:`CHOICES()` function should
@@ -184,16 +166,18 @@ question. An example of using the :code:`choices` key-value pair is shown below.
 
 .. code-block:: python
 
+    import teepy
+    
     def CHOICES(ind):
         choices = teepy.get_answers(PROBLEM(ind))
-
+        
         choices.extend(['Red',
                         'Green',
                         'Yellow',
                         'Orange'])
-
+        
         random.shuffle(choices)
-
+        
         return {'choices': choices}
 
 The example above also illustrates the use of a TEEPy function called
@@ -207,10 +191,12 @@ mixing the list of options is shown below.
 
 .. code-block:: python
 
+    import teepy
+    
     def CHOICES(ind):
         choices = ['1', '2']
         choices.extend(teepy.get_answers(PROBLEM(ind)))
-    
+        
         return {'choices': choices}
 
 There are a couple of things worth mentioning about the  :code:`CHOICES()`
@@ -225,12 +211,14 @@ below.
 
 .. code-block:: python
 
+    import teepy
+    
     def CHOICES(ind):
         N = 10
         choice_format = '{:0.3f}'
         step = random.uniform(0.01, 0.05)
         ans = teepy.get_answers(PROBLEM(ind))
-    
+        
         choices = teepy.generate_choices(N, ans, step)
         
         return {'choices': choices, 'choice_format': choice_format}
