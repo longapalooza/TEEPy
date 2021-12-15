@@ -95,7 +95,7 @@ An example of a multiple-answer question is shown below.
     def PROBLEM(ind):
         '''How many licks does it take to get to the center of a Tootsie Pop?'''
         
-        answer = [3, 'The world may never know.']
+        answer = ['3', 'The world may never know.']
         
         return {'answer': answer}
 
@@ -165,8 +165,8 @@ automatically perform the necessary conversions when dealing with different
 types of units.
 
 The :code:`CHOICES()` function must return a :code:`None` value, or a dictionary
-containing the :code:`choices`. No multiple-choice choices will be displayed if
-:code:`CHOICES()` returns a :code:`None` value. An open-ended question is
+containing the key :code:`choices`. No multiple-choice choices will be displayed
+if :code:`CHOICES()` returns a :code:`None` value. An open-ended question is
 typically when this is needed. Below is an example of a :code:`CHOICES()`
 function that returns a :code:`None` value.
 
@@ -178,8 +178,8 @@ function that returns a :code:`None` value.
 
 If multiple-choice answers are provided, the :code:`CHOICES()` function should
 return a dictionary containing the key :code:`choices`. The value of this key
-should be a list containing the correct answer and wrong answers (i.e., it
-should include everything that is to be listed as answer choices in the
+should be a list containing the correct answer and wrong answers. In other
+words,it should include everything that is to be listed as answer choices in the
 question. An example of using the :code:`choices` key-value pair is shown below.
 
 .. code-block:: python
