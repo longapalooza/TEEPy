@@ -2,9 +2,10 @@ from distutils.core import setup
 setup(
   name = 'teepy',
   packages = ['teepy'],
-  version = '0.3.2',
+  version = '0.3.4',
   license = 'MIT',
   description = 'Tech Engineering Exam in Python',
+  long_description=open('README.rst').read(),
   author = 'William Long',
   author_email = 'admin@longapalooza.com',
   url = 'https://github.com/longapalooza/teepy',
