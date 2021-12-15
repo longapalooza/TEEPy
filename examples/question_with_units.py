@@ -9,8 +9,8 @@ and the distance between point A and B is $ {L1} $, and the distance
 between point B and C is $ {L2} $, what is the distance between point
 A and C?'''
 
-    L1s = [1, 2, 3, 4]
-    L2s = [5, 6, 7, 8]
+    L1s = [1, 2, 3]
+    L2s = [4, 5, 6]
     
     L1 = teepy.define_unit(L1s[ind], 'ft')
     L2 = teepy.define_unit(L2s[ind], 'cm')
