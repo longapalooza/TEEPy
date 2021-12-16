@@ -1,7 +1,4 @@
 import random
-import sys
-lib_dir = '../teepy/'
-sys.path.insert(0, lib_dir)
 import teepy
 
 ind = 0
