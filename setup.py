@@ -2,7 +2,7 @@ from distutils.core import setup
 setup(
   name = 'teepy',
   packages = ['teepy'],
-  version = '0.3.4',
+  version = '0.3.5',
   license = 'MIT',
   description = 'Tech Engineering Exam in Python',
   long_description=open('README.rst').read(),
