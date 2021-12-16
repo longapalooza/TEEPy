@@ -57,9 +57,9 @@ def generate_choices_html(prob, choices):
                     try:
                         html += choice_format.format(choice)
                     except:
-                        html += choice
+                        html += str(choice)
             else:
-                html += choice
+                html += str(choice)
             html += '<span></li>\n'
         html += '</ol>'
     return html
