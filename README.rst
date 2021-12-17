@@ -85,7 +85,7 @@ An example of a multiple-answer question is shown below.
     def PROBLEM(ind):
         '''How many licks does it take to get to the center of a Tootsie Pop?'''
 
-        answer = ['3', 'The world may never know.']
+        answer = [3, 'The world may never know.']
 
         return {'answer': answer}
 
@@ -197,7 +197,7 @@ mixing the list of options is shown below.
     import teepy
 
     def CHOICES(ind):
-        choices = ['1', '2']
+        choices = [1, 2]
         choices.extend(teepy.get_answers(PROBLEM(ind)))
 
         return {'choices': choices}
