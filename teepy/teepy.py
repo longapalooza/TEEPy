@@ -1,4 +1,4 @@
-# v0.3.5
+# v0.3.6
 import asyncio
 import base64
 import ctypes
