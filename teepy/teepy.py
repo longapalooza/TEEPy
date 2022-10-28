@@ -243,7 +243,7 @@ class begin:
         
         def HTML(self, HTML):
             structure = {'type': 'HTML', 'HTML': HTML}
-            self.ac_stack.append(structure)
+            self.stack.append(structure)
 
         def problem(self, filename, pts_correct, pts_incorrect = -0,
                     min_height = None, display_worth = True):
