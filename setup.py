@@ -2,7 +2,7 @@ from distutils.core import setup
 setup(
   name = 'teepy',
   packages = ['teepy'],
-  version = '0.3.7',
+  version = '0.3.8',
   license = 'MIT',
   description = 'Tech Engineering Exam in Python',
   long_description = open('README.rst').read(),
@@ -10,7 +10,7 @@ setup(
   author_email = 'admin@longapalooza.com',
   url = 'https://github.com/longapalooza/teepy',
   keywords = ['Tech', 'Exam', 'Engineering'],
-  python_requires = '>=3.8,<=3.9',
+  python_requires = '>=3.8,<3.10',
   install_requires = [
           'beautifulsoup4',
           'cefpython3',
