@@ -2,14 +2,15 @@ from distutils.core import setup
 setup(
   name = 'teepy',
   packages = ['teepy'],
-  version = '0.3.6',
+  version = '0.3.7',
   license = 'MIT',
   description = 'Tech Engineering Exam in Python',
-  long_description=open('README.rst').read(),
+  long_description = open('README.rst').read(),
   author = 'William Long',
   author_email = 'admin@longapalooza.com',
   url = 'https://github.com/longapalooza/teepy',
   keywords = ['Tech', 'Exam', 'Engineering'],
+  python_requires = '>=3.8,<=3.9',
   install_requires = [
           'beautifulsoup4',
           'cefpython3',
